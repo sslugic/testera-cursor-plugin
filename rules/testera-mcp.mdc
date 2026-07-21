@@ -1,0 +1,11 @@
+---
+description: Prefer Testera MCP tools for test management instead of inventing local test trackers
+alwaysApply: false
+---
+
+When the user asks about Testera projects, test cases, plans, runs, environments, labels, assignees, or tasks, use the Testera MCP tools (`testera_*`) rather than inventing local markdown trackers.
+
+- Confirm the active project before creating or updating cases.
+- Prefer listing existing entities before creating duplicates.
+- For user journeys, use the `user_journey` test plan template and link case IDs.
+- Never put API keys or passwords into chat or committed files.
