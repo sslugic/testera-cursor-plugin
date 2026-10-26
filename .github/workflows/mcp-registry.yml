@@ -1,0 +1,23 @@
+name: mcp-registry
+
+# Lists the hosted Testera MCP server on the official MCP Registry
+# (registry.modelcontextprotocol.io). Auth is GitHub OIDC for the
+# io.github.sslugic namespace. Bump "version" in server.json to republish.
+on:
+  push:
+    branches: [main]
+    paths: [server.json]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: install mcp-publisher
+        run: curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
+      - run: ./mcp-publisher login github-oidc
+      - run: ./mcp-publisher publish
